@@ -69,14 +69,13 @@ transfers <- function (data=data,
   # Rename each variable using a default name if a different name is used in the dataset
   colnames(temp) <- c('id','admdate','sepdate','mode')
 
-  # Sort data by ID, start date, and end date
-  temp <- temp %>%
-    arrange(id)
-  
   # Create a fileseq variable
   temp <- temp %>%
     mutate(fileseq = row_number())
-
+  
+  # Sort data by ID, start date, and end date
+  temp <- temp %>%
+    arrange(id)
 
   # Create in indicator variable for whether an episode is a transfer
   temp <- temp %>%
